@@ -1,3 +1,7 @@
-import { createRouteHandler } from "@fal-ai/server-proxy/nextjs";
+import { route } from "@fal-ai/server-proxy/nextjs";
 
-export const { GET, POST, PUT } = createRouteHandler();
+export const POST = (req) => {
+  return route(req, {
+    credentials: process.env.FAL_KEY,
+  });
+};
