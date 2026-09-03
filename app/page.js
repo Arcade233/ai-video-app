@@ -3,8 +3,6 @@
 import { useState } from 'react';
 import * as fal from '@fal-ai/client';
 
-fal.config.proxyUrl = '/api/fal/proxy';
-
 export default function Home() {
   const [prompt, setPrompt] = useState('');
   const [loading, setLoading] = useState(false);
@@ -16,6 +14,11 @@ export default function Home() {
     setLoading(true);
     setError(null);
     setVideoUrl(null);
+
+    // Configure client-side proxy right before making the request
+    fal.config({
+      proxyUrl: '/api/fal/proxy',
+    });
 
     try {
       const result = await fal.subscribe('fal-ai/minimax/video', {
@@ -64,4 +67,4 @@ export default function Home() {
       )}
     </main>
   );
-        }
+  }
