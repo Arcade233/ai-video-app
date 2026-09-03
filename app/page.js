@@ -3,9 +3,7 @@
 import { useState } from 'react';
 import * as fal from '@fal-ai/client';
 
-fal.config({
-  proxyUrl: '/api/fal/proxy',
-});
+fal.config.proxyUrl = '/api/fal/proxy';
 
 export default function Home() {
   const [prompt, setPrompt] = useState('');
@@ -66,4 +64,4 @@ export default function Home() {
       )}
     </main>
   );
-          }
+        }
