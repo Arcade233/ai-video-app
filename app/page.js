@@ -20,10 +20,8 @@ export default function Home() {
     setStatus('Initializing generation...');
 
     try {
-      // Configure client-side proxy using the simplified route path
-      fal.config({
-        proxyUrl: '/api/proxy',
-      });
+      // Set property directly on fal.config object
+      fal.config.proxyUrl = '/api/proxy';
 
       const result = await fal.subscribe('fal-ai/minimax/h3-max/text-to-video', {
         input: {
