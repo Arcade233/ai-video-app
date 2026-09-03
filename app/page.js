@@ -19,12 +19,12 @@ export default function Home() {
     setVideoUrl(null);
     setStatus('Initializing generation...');
 
-    // Configure proxy URL dynamically on interaction
-    fal.config({
-      proxyUrl: '/api/fal/proxy',
-    });
-
     try {
+      // Configure client-side proxy using the simplified route path
+      fal.config({
+        proxyUrl: '/api/proxy',
+      });
+
       const result = await fal.subscribe('fal-ai/minimax/h3-max/text-to-video', {
         input: {
           prompt: prompt,
@@ -47,7 +47,7 @@ export default function Home() {
       }
     } catch (err) {
       console.error(err);
-      setError('Generation failed. Ensure FAL_KEY is configured in your Vercel Environment Variables.');
+      setError(`Generation failed: ${err.message || 'Check FAL_KEY in Vercel settings.'}`);
     } finally {
       setLoading(false);
       setStatus('');
